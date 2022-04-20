@@ -15,7 +15,7 @@ jobs:
       - name: Set enviroment variables
         shell: bash
         run: |
-          echo "FUNCTION_APP_PATH=${{ $GITHUB_WORKSPACE }}/api" >> $GITHUB_ENV
+          echo "FUNCTION_APP_PATH=${{ github_workspace }}/api" >> $GITHUB_ENV
     
       - name: Check enviroment variables
         shell: bash
@@ -57,3 +57,10 @@ jobs:
         with:
           name: apiapp
           path: ${{ env.FUNCTION_APP_PATH }}/published
+
+  app_deploy_azure:
+    name: "Deploy to Azure"
+    needs: build-test
+
+    runs-on: ubuntu-latest
+
